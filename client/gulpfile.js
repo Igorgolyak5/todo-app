@@ -10,6 +10,9 @@ var jsSources = ['app/js/*.js', 'app/js/tasks/*.js', 'app/js/shared/*.js'],
     cssSources = ['app/styles/*.css'],
     outputDir = 'assets';
 
+gulp.task('bower', function() {
+    return bower({ cmd: 'update'});
+});
 
 gulp.task('copy', function() {
     gulp.src('index.html')
@@ -31,10 +34,6 @@ gulp.task('js', function() {
         .pipe(connect.reload())
 });
 
-gulp.task('bower', function() {
-    return bower();
-});
-
 gulp.task('watch', function() {
     gulp.watch(jsSources, ['js']);
     gulp.watch(htmlSources, ['html']);
@@ -54,4 +53,4 @@ gulp.task('html', function() {
         .pipe(connect.reload())
 });
 
-gulp.task('default', ['html', 'js', 'css', 'connect', 'watch']);
+gulp.task('default', ['bower', 'html', 'js', 'css', 'connect', 'watch']);
