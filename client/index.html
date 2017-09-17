@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="taskApp">
+<head>
+
+  <meta charset="utf-8">
+  <title>Todo app</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+  <link rel="stylesheet" href="assets/main.css">
+</head>
+
+<body ng-controller="TaskController" ng-cloak>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3 todo-bg">
+          <div class="todo-item"><label for="name">Имя задачи</label><textarea id="name" ng-model="name"></textarea></div></hr>
+          <div class="todo-item"><label for="date">Дата</label><input type="text" ng-model="date" id="date" datepicker/></div></hr>
+          <button class="btn btn-success" ng-click="add(name, date)" style="margin-bottom: 20px;">Добавить</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3 todo-bg">
+        <div ng-repeat="task in tasks" class="todo-item">
+          <label ng-class="!task.status ? 'strike' : ''" style="width: 20%;">{{task.name}}</label>
+          <label style="width: 20%;">{{task.date | date:'MM/dd/yyyy'}}</label>
+          <button class="btn btn-info" ng-click="remove(task.id)">Удалить</button>
+          <button class="btn btn-success" ng-click="changeStatus(task.id)">
+            <span ng-if="task.status">Выполнить</span>
+            <span ng-if="!task.status">Отложить задачу</span>
+          </button>
+          <button class="btn btn-primary" ng-click="showModal(task)">Изменить</button><hr />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <modal visible="activeModal">
+      <modal-header title="Изменить задачу"></modal-header>
+      <modal-body>
+        <label for="change-name">Имя задачи</label><input ng-model="changeTask.name" id="change-name" name="change-name"/><hr/>
+        <label for="change-date">Дата</label><input ng-model="changeTask.date" id="change-date" name="change-date" datepicker/>
+      </modal-body>
+      <modal-footer>
+        <button class="btn btn-primary" ng-click="update(changeTask)">Save</button>
+      </modal-footer>
+    </modal>
+  </div>
+
+</body>
+
+<script src="bower_components/moment/moment.js"></script>
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="bower_components/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+<script src="bower_components/angular/angular.min.js"></script>
+<script src="assets/script.js"></script>
+</html>

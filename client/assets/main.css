@@ -1,0 +1,28 @@
+body {
+    background: #EAEAEA;
+}
+.row {
+    margin-top: 30px;
+}
+.todo-bg {
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5); /* Параметры тени */
+}
+.todo-item {
+    width: 100%;
+    margin: 10px;
+}
+.todo-item label {
+    width: 40%;
+    float:left;
+    margin-top: 15px;
+}
+.strike {
+    text-decoration: line-through;
+}
+textarea {
+    resize: none;
+    margin: 10px 0;
+    width: 40%;
+    float:left;
+}

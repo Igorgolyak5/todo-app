@@ -1,0 +1,19 @@
+server:
+  port: 8080
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    database-platform: org.hibernate.dialect
+    properties:
+        hibernate :
+          dialect : org.hibernate.dialect.PostgreSQLDialect
+  datasource:
+    data-username: postgres
+    data-password: postgres
+    url: jdbc:postgresql://localhost:5432/tasks?user=postgres&password=postgres
+    driver-class-name: org.postgresql.Driver
+security:
+  basic:
+    enabled: false
